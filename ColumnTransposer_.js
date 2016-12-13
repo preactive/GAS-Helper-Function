@@ -31,7 +31,6 @@ function ColumnTransposer_() {
     var copyArrayRow = [];
     for (var a in arguments)
     {
-      Logger.log(arguments[a][i].toString());
       copyArrayRow.push(arguments[a][i].toString());
     }
     copyArray.push(copyArrayRow);
