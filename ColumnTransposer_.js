@@ -16,7 +16,7 @@ var name     = source_sheet.getRange("A:A").getValues();
 // ["name","bob","sally","john"]
 var job      = source_sheet.getRange("B:B").getValues();
 // ["job","Sales","IT","HR"]
-var num      = source_sheet.getRange("C:C").getValues();
+var num      = source_sheet.getRange("D:D").getValues();
 // ["num",10.0,-2.0,15.5]
 
 
