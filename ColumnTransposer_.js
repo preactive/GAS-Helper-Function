@@ -4,6 +4,9 @@ Benefit of this script is:
 - Allows you to send the function to arrays of columns and compile them or add them side by side
 - You can send as many parameters as you need
 
+Search terms:
+ - Add two columns together / add one column to another one / concatenate two columns / join two columns / add one array to another array / concatenate arrays / join array / add array to side of another array
+
 +-------+-------+-----------+------+
 | name  |  job  |   role    | num  |
 +-------+-------+-----------+------+
