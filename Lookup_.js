@@ -7,8 +7,11 @@ Benefit of this script is:
 -Unlike Vlookup you can have it look at for reference data at any Column in the row.  Does not have to be in the first column for it to work like Vlookup.
 -You can return the Lookup to Memory for further processing by other functions
 
-Useage:
+Search terms:
+ - Google App Script / GAS / Javascript 
+ - Vlookup / lookup / Search / query
 
+Usage:
 var LocNum    = SpreadsheetApp.openById(SheetID).getSheetByName('Sheet1').getRange('J2:J').getValues();
 
 Lookup_(SheetinfoArray,"Sheet1!A:B",0,[1],"Sheet1!I1","n","y","n");
