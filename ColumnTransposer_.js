@@ -5,7 +5,7 @@ Benefit of this script is:
 - You can send as many parameters as you need
 
 Search terms:
- - Add two columns together / add one column to another one / concatenate two columns / join two columns / add one aray to another array / concatenate arrays / join array / add array to side of another array / transpose array
+ - Add two columns together / add one column to another one / concatenate two columns / join two columns / add one array to another array / concatenate arrays / join array / add array to side of another array / transpose array
  - Google App Script / GAS / javascript 
 
 +-------+-------+-----------+------+
