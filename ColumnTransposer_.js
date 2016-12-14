@@ -25,16 +25,18 @@ Useage:
   target_Sheet.getRange(1,1,copyArray.length, copyArray[0].length).setValues(copyArray);
 */
 
-function ColumnTransposer_() {
-  var copyArray = [];
-  for (var i=0, iL=arguments[0].length; i<iL; i++){
-    var copyArrayRow = [];
-    for (var a in arguments)
+function ColumnTransposer_() 
+  {
+  var copyArray = [];  //Create empty array
+  for (var i=0, iL=arguments[0].length; i<iL; i++)  //loops for the first argument length
+  {
+    var copyArrayRow = []; // Create empty array every time the loop hits this point
+    for (var a in arguments)  // loops through each argument that was sent to the function
     {
-      copyArrayRow.push(arguments[a][i].toString());
+      copyArrayRow.push(arguments[a][i].toString());  //get the current argument and its index from the outer loop's level
     }
-    copyArray.push(copyArrayRow);
+    copyArray.push(copyArrayRow); // After all the argument's current index have been added to copyArrayRow variable it is pushed as a new row
   }
-  return copyArray;
+  return copyArray;  //returns the new 2d array.
 }
 //~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`
