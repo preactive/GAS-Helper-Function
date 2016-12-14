@@ -5,7 +5,8 @@ Benefit of this script is:
 - You can send as many parameters as you need
 
 Search terms:
- - Add two columns together / add one column to another one / concatenate two columns / join two columns / add one array to another array / concatenate arrays / join array / add array to side of another array
+ - Add two columns together / add one column to another one / concatenate two columns / join two columns / add one aray to another array / concatenate arrays / join array / add array to side of another array / transpose array
+ - Google App Script / GAS / javascript 
 
 +-------+-------+-----------+------+
 | name  |  job  |   role    | num  |
@@ -23,7 +24,7 @@ var num      = source_sheet.getRange("D:D").getValues();
 // ["num",10.0,-2.0,15.5]
 
 
-Useage:
+Usage:
   var copyArray = ColumnTransposer_(name,job,num);
   target_Sheet.getRange(1,1,copyArray.length, copyArray[0].length).setValues(copyArray);
 */
