@@ -3,12 +3,15 @@
 // Script return Duplicates from input.  Use objToString_() to beautify output or return.
 /*
 Usage:
+  var array = [["name1"],["name1"],["name1"],["name1"], ["name2"], ["name2"], ["name3"]]
+  var dupeOut = dupExpose_(array,0)
+  
   var dupeOut = dupExpose_("Active",0)
-  var dupeOut = dupExpose_("Active",0)
+  
   var duplicates = dupeOut["array"]
   //  [["name1"], ["name2"]]
   var dupesObj = dupeOut["dupCountsObj"]
-  //{name1=-1.0, name2=-1.0, name3=5.0, name4=-1.0,..............}
+  //{name1=4.0, name2=2.0, name3=-1.0,..............}
 */
 
 function dupExpose_(RefRange,Offset)
