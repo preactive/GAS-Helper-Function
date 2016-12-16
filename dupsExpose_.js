@@ -3,8 +3,10 @@
 // Script return Duplicates from input.  Use objToString_() to beautify output or return.
 /*
 Usage:
+  var dupeOut = dupExpose_("Active",0)
+  var dupeOut = dupExpose_("Active",0)
   var duplicates = dupeOut["array"]
-  //  [[Robert Broeckelmann], [Chindu Thilakan]]
+  //  [["name1"], ["name2"]]
   var dupesObj = dupeOut["dupCountsObj"]
   //{name1=-1.0, name2=-1.0, name3=5.0, name4=-1.0,..............}
 */
@@ -15,6 +17,10 @@ function dupExpose_(RefRange,Offset)
   if(Object.prototype.toString.call(RefRange) === '[object Array]')
   {
     var dataRange = RefRange;
+    if(Object.prototype.toString.call(dataRange[0]) === '[object String]')
+    {
+     return "Not a multiDimensional Array"
+    }
   }
 
   if(Object.prototype.toString.call(RefRange) === '[object String]')
