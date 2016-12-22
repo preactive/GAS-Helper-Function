@@ -4,7 +4,7 @@
 
 //Build a list of warehouse / depot email address.
 
-//example 'var CHeckMails = WhseEmailPasser_("d",LocNum,["MGR","ADM","PHM"],"@example.com");'
+//example 'var CheckMails = WhseEmailPasser_("d",LocNum,["MGR","ADM","PHM"],"@example.com");'
 //would output "d01111mgr@example.com,d01111adm@example.com,d01111phm@example.com,"
 
 function WhseEmailPasser_(WorD, IncomingWhseNum, WhseEmails, Domain)
@@ -23,7 +23,7 @@ function WhseEmailPasser_(WorD, IncomingWhseNum, WhseEmails, Domain)
     var CurrentEmail = WhseEmails[w].toUpperCase();
     if(CurrentEmail=="HP")
     {
-      var Email = CurrentEmail + PadWhseNum + "@COSTCO.COM"; 
+      var Email = CurrentEmail + PadWhseNum + "@" + Domain; 
       EmailArray.push(Email);
       continue;
     }
