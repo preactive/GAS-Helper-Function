@@ -4,7 +4,7 @@
 
 //Build a list of warehouse / depot email address.
 
-//example 'var CHeckMails = WhseEmailPasser_("W",LocNum,["MGR","ADM","PHM"],"@example.com");'
+//example 'var CHeckMails = WhseEmailPasser_("d",LocNum,["MGR","ADM","PHM"],"@example.com");'
 //would output "d01111mgr@example.com,d01111adm@example.com,d01111phm@example.com,"
 
 function WhseEmailPasser_(WorD, IncomingWhseNum, WhseEmails, Domain)
