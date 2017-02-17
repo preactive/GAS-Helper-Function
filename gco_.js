@@ -2,6 +2,17 @@
 //~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`
 //Returns the offset value of the column (Row 1) titled "Status"
 //(eg, if the 7th column is labeled "Status", this function returns 6)
+//
+// Usage: gco_("dogs",sheet)
+// Output: 1
+//
+// Usage: gco_("Chickens",sheet,1)
+// Output: 3
+//
+/*
+| Cats | Dogs |    Farm Animals     |  
+|      |      |    Cows  | Chickens |
+*/
 //retired function name "getColumnOffsetOfCurrentParameter_()" and shortened to "gco_()"
 function gco_(ColumnHeader,sheet,Row)
 {
