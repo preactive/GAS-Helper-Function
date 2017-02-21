@@ -12,7 +12,7 @@ Search terms:
  - Vlookup / lookup / Search / query
 
 Usage:
-var LocNum    = SpreadsheetApp.openById(SheetID).getSheetByName('Sheet1').getRange('J2:J').getValues();
+var SheetinfoArray    = SpreadsheetApp.openById(SheetID).getSheetByName('Sheet1').getRange('J2:J').getValues();
 
 Lookup_(SheetinfoArray,"Sheet1!A:B",0,[1],"Sheet1!I1","n","y","n");
 //or
