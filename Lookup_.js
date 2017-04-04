@@ -7,12 +7,7 @@ Benefit of this script is:
 -Unlike Vlookup you can have it look at for reference data at any Column in the row.  Does not have to be in the first column for it to work like Vlookup.
 -You can return the Lookup to Memory for further processing by other functions
 
-Search terms:
- - Google App Script / GAS / Javascript 
- - Vlookup / lookup / Search / query
-
-Usage:
-var SheetinfoArray    = SpreadsheetApp.openById(SheetID).getSheetByName('Sheet1').getRange('J2:J').getValues();
+Useage:
 
 Lookup_(SheetinfoArray,"Sheet1!A:B",0,[1],"Sheet1!I1","n","y","n");
 //or
@@ -24,15 +19,12 @@ Lookup_(Sheetinfo,"Sheet1!A:B",1,[1,3,0,2],"return","y","n","n");
 //or
 Lookup_("female","Sheet1!A:G",4,[2],"Database!A1","y","y","y");
 //or
-Lookup_(Sheetinfo,LocationsArr,4,[0],"return","y","y","y");
-
--Loads all Locations numbers from J2:J into a variable 
---looks for Location Numbers in Column 0 of Referance sheet and range eg "Data!A:G"
----Returns results to Column 3 of Target Sheet and range eg "test!A1" or "1,1"
-
+Lookup_(Sheetinfo,LocationsArr,4,[0],"return","y","n","y");
+//or
+Lookup_(/RegEx+/i,LocationsArr,4,[0],"return","y","n","y");
 
 Parameters Explaination:
-"Search_Key" - Can be be a single cell or an array to lookup multiple things at once
+"Search_Key" - Can be be a string, array, or regex to lookup multiple things at once
 
 "RefSheetRange" - The Reference source of information.  Can be local sheet reference and range or an array of data from a variable.
 
@@ -48,6 +40,9 @@ Parameters Explaination:
 
 "Has_NAs" - If  'Y' it will put in '#N/A' the column where it did not find data for 'Search_Key' other wise it will leave the column blank.
 
+
+Todo: refactor (ReturnMultiResults,Add_Note,Has_NAs) into Object via single paramerter and add debug for build in logger output.  ex (  {returnMultiResults:True,addNote:False,hasNAs:True,debug:True}   )
+default will be false but can be declaired specific as well with no ill effect.
 */
 
 function Lookup_(Search_Key,RefSheetRange,SearchKey_RefMatch_IndexOffSet,IndexOffSetForReturn,SetSheetRange,ReturnMultiResults,Add_Note,Has_NAs)   
@@ -61,9 +56,22 @@ function Lookup_(Search_Key,RefSheetRange,SearchKey_RefMatch_IndexOffSet,IndexOf
     var NALoad = "";
   }
   
+  var SK_type = Object.prototype.toString.call(Search_Key);
+  
+  if(Object.prototype.toString.call(Search_Key) === '[object Array]')
+  {
+    var SKL = Search_Key.length;
+  }
+  
   if(Object.prototype.toString.call(Search_Key) === '[object String]')
   {
     var Search_Key = new Array(Search_Key);
+    var SKL = Search_Key.length;
+  }
+  
+  if(Object.prototype.toString.call(Search_Key) === '[object RegExp]')
+  {
+    var SKL = 1;
   }
   
   if(Object.prototype.toString.call(IndexOffSetForReturn) === '[object Number]')
@@ -94,18 +102,34 @@ function Lookup_(Search_Key,RefSheetRange,SearchKey_RefMatch_IndexOffSet,IndexOf
   }
   
   var twoDimensionalArray = [];
-  for (var i = 0, Il=Search_Key.length; i<Il; i++)                                                         // i = number of rows to index and search  
+  for (var i = 0, Il=SKL; i<Il; i++)                                                         // i = number of rows to index and search  
   {
     var Sending = [];                                                                                      //Making a Blank Array
     var newArray = [];                                                                                     //Making a Blank Array
     var Found ="";
     for (var nn=0, NNL=data.length; nn<NNL; nn++)                                                                 //nn = will be the number of row that the data is found at
     {
+      var SK_Pass = "";                                                                                         // resets SK_pass for looping check.
       if(Found==1 && /^n$/i.test(ReturnMultiResults))                                                                                         //if statement for found if found = 1 it will to stop all other logic in nn loop from running
       {
         break;                                                                                             //Breaking nn loop once found
       }
-      if (data[nn][SearchKey_RefMatch_IndexOffSet]==Search_Key[i])                                              //if statement is triggered when the search_key is found.
+      
+      if (SK_type === '[object RegExp]')
+      {
+        if (Search_Key.test(data[nn][SearchKey_RefMatch_IndexOffSet]))                                              //if statement is triggered when the search_key is found.
+        {
+          var SK_Pass = true; 
+        }
+      }
+      if (SK_type === '[object String]' || SK_type === '[object Array]')
+      {
+        if (data[nn][SearchKey_RefMatch_IndexOffSet]==Search_Key[i])                                              //if statement is triggered when the search_key is found.
+        {
+          var SK_Pass = true; 
+        }
+      }
+      if (SK_Pass)                                              //if statement is triggered when the search_key is found.
       {
         var newArray = [];
         for (var cc=0, CCL=IndexOffSetForReturn.length; cc<CCL; cc++)                                         //cc = numbers of columns to referance
