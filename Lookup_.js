@@ -109,7 +109,7 @@ function Lookup_(Search_Key,RefSheetRange,SearchKey_RefMatch_IndexOffSet,IndexOf
     var Found ="";
     for (var nn=0, NNL=data.length; nn<NNL; nn++)                                                                 //nn = will be the number of row that the data is found at
     {
-      var SK_Pass = "";                                                                                         // resets SK_pass for looping check.
+      var SK_Pass = false;                                                                                         // resets SK_pass for looping check.
       if(Found==1 && /^n$/i.test(ReturnMultiResults))                                                                                         //if statement for found if found = 1 it will to stop all other logic in nn loop from running
       {
         break;                                                                                             //Breaking nn loop once found
