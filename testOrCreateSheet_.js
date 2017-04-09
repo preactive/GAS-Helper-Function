@@ -1,17 +1,34 @@
-//~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`
-//--//Dependent on isEmpty_()
-function testOrCreateSheet_(TargetSheetName,HideSheet)
+function testOrCreateSheet_(TargetSheetName,TargetWorkbook)
 {
-  var HideSheet = typeof HideSheet !== 'undefined' ? HideSheet : "";
-  var Sheet = SpreadsheetApp.getActive().getSheetByName(TargetSheetName);
+  var TargetWorkbook = typeof TargetWorkbook !== 'undefined' ? TargetWorkbook : "";
+  
+  try 
+    {
+      if(TargetWorkbook == "")
+      {
+        var ssOpen = SpreadsheetApp.getActive();
+      }
+      if(TargetWorkbook != "")
+      {
+        var DestTypeCheck = TargetWorkbook.indexOf("https://"); 
+        if(DestTypeCheck >= 0)
+        { 
+          var ssOpen = SpreadsheetApp.openByUrl(TargetWorkbook)
+          }
+        if(DestTypeCheck == -1)
+        {
+          var ssOpen = SpreadsheetApp.openById(TargetWorkbook) 
+          }
+      }
+    }
+  catch(e)
+    {
+      Logger.log(e)
+      return
+    }
+  var Sheet = ssOpen.getSheetByName(TargetSheetName);
   if (Sheet == null) 
   {
-    var wasNull = true;
-    var Sheet = SpreadsheetApp.getActive().insertSheet().setName(TargetSheetName);
+    var Sheet = ssOpen.insertSheet().setName(TargetSheetName);
   }  
-  if (!isEmpty_(HideSheet) || wasNull)  //will autohide if sheet didnt exist exist
-  {
-    SpreadsheetApp.getActive().getSheetByName(TargetSheetName).hideSheet();
-  }
 }
-//~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`
