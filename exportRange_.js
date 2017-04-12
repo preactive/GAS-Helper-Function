@@ -2,11 +2,15 @@
 //Script Based ExportRange based off of the conecpts of importrange
 
 //Example exportRange_('Sheet1!A:G','0AodPsggrbsh1dDNH....................','Main4NS!A2','y')
+//Example exportRange_(TwoD_Array,'0AodPodlvjtx1dDNH....................','Main4NS!C7','y')
+
 //Explanation exportRange_('Source Spreadsheet Tab Name and Range','Exporting Spreadsheet Key or URL','Exporting Spreadsheet Tab Name and placing cell','Will add note to the first cell of import')
 
-function exportRange_(Source_SheetRange,Destination_key,Destination_SheetRange,Add_Note) 
+
+function exportRange_(Source_Data,Destination_key,Destination_SheetRange,Add_Note) 
 {  
-  var Source_SheetRangeArr = Source_SheetRange.split("!");
+  
+  var Source_SheetRangeArr = Source_Data.split("!");
   var Source_Sheet = Source_SheetRangeArr[0];
   var Source_Range = Source_SheetRangeArr[1];
   
@@ -16,7 +20,14 @@ function exportRange_(Source_SheetRange,Destination_key,Destination_SheetRange,A
   
   try 
   {
-    var Source_Load = SpreadsheetApp.getActive().getSheetByName(Source_Sheet).getRange(Source_Range).getValues();
+    if(Object.prototype.toString.call(Source_Data) === '[object String]')
+    {
+      var Source_Load = SpreadsheetApp.getActive().getSheetByName(Source_Sheet).getRange(Source_Range).getValues();
+    }
+    if(Object.prototype.toString.call(Source_Data) === '[object Array]')
+    {
+      var Source_Load = Source_Data
+    }
     
     var DestTypeCheck = Destination_key.indexOf("https://"); 
     if(DestTypeCheck >= 0)
