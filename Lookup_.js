@@ -1,5 +1,6 @@
 //~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`~,~`
 //--//Dependent on isEmpty_()
+//--//https://github.com/preactive/GAS-Helper-Function/blob/master/isEmpty_.js
 // Script Look-up
 /*
 Benefit of this script is:
